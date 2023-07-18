@@ -19,7 +19,7 @@ class FilaPrioridade:
     # Retorna True se a fila de prioridade está vazia, False caso contrário
     def is_empty(self) -> bool:
         # implementação do método
-        pass
+        return self.__qtdItens == 0
 
     
     # retorna True se a fila de prioridade está cheia, False caso contrário
@@ -32,7 +32,7 @@ class FilaPrioridade:
     # Caso a lista esteja vazia, retorna None
     def first(self) -> No:
         # implementação do método
-        pass
+        return self.__inicio
 
 
     # insere um item na fila de prioridade e retorna True, se o item for inserido
