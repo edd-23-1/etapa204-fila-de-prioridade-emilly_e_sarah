@@ -25,7 +25,7 @@ class FilaPrioridade:
     # retorna True se a fila de prioridade está cheia, False caso contrário
     def is_full(self) -> bool:
         # implementação do método
-        pass
+        return self.__qtdItens == self.__capacidade
 
 
     # Retorna uma referência para o primeiro item da fila de prioridade
@@ -46,7 +46,13 @@ class FilaPrioridade:
     # se a fila de prioridade estiver vazia, lança uma exceção: raise Exception("mensagem de erro")
     def remove(self) -> No:
         # implementação do método
-        pass
+        if self.is_empty():
+            raise Exception("A fila de prioridade está vazia!")
+
+        no_removido = self.__inicio
+        self.__inicio = self.__inicio.prox
+        self.__qtdItens -= 1
+        return no_removido
 
 
     # retorna uma lista de tuplas com os itens (valor e prioridade) da fila de prioridade 
