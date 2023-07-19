@@ -72,7 +72,6 @@ class FilaPrioridade:
         if self.is_empty():
             print("A fila de prioridade está vazia!")
             return []
-
         lista_itens = []
         atual = self.__inicio
         while atual is not None:
