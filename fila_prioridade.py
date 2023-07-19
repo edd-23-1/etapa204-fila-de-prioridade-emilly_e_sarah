@@ -24,8 +24,7 @@ class FilaPrioridade:
     
     # retorna True se a fila de prioridade está cheia, False caso contrário
     def is_full(self) -> bool:
-        # implementação do método
-        pass
+        return self.__qtdItens == self.__capacidade
 
 
     # Retorna uma referência para o primeiro item da fila de prioridade
@@ -38,8 +37,24 @@ class FilaPrioridade:
     # insere um item na fila de prioridade e retorna True, se o item for inserido
     # se a fila de prioridade estiver cheia, lança uma exceção: raise Exception("mensagem de erro")
     def add(self, valor, prioridade) -> bool:
-        # implementação do método
-        pass
+        novo_no = No(valor, prioridade)
+
+        if self.is_full():
+            raise Exception("A fila de prioridade está cheia!")
+
+        if self.is_empty() or prioridade > self.__inicio.prioridade:
+            novo_no.prox = self.__inicio
+            self.__inicio = novo_no
+        else:
+            atual = self.__inicio
+            while atual.prox is not None and atual.prox.prioridade >= prioridade:
+                atual = atual.prox
+
+            novo_no.prox = atual.prox
+            atual.prox = novo_no
+
+        self.__qtdItens += 1
+        return True
 
     
     # remove o primeiro item da fila de prioridade, caso não esteja vazia, e retorna o Nó
@@ -54,8 +69,18 @@ class FilaPrioridade:
     # caso a fila de prioridade esteja vazia, imprime uma mensagem informando
     # que a fila de prioridade está vazia e retorna uma lista vazia
     def display(self) -> list[tuple()]:
-        # implementação do método
-        pass
+        if self.is_empty():
+            print("A fila de prioridade está vazia!")
+            return []
+
+        lista_itens = []
+        atual = self.__inicio
+        while atual is not None:
+            lista_itens.append((atual.dado, atual.prioridade))
+            atual = atual.prox
+
+        print(lista_itens)
+        return lista_itens
     
 
     # retorna a quantidade de elementos na fila de prioridade
